@@ -8,13 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>result1.jsp</title>
+    <title>result4.jsp</title>
 </head>
 <body>
-logginname:${requestScope.user.logginname}<br>
- password:${requestScope.user.password}<br>
-
-<!--测试ModelAttribute1Controller-->
-访问request作用域中的loginname对象：${requestScope.loginname}<br>
+${requestScope.user.username}<br>
 </body>
 </html>

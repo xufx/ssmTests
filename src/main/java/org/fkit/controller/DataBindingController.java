@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class DataBindingController
-{
+{//输入http://localhost:8080/dataBindingTest.jsp进行测试
  private static final Log logger= LogFactory.getLog(DataBindingController.class);
     @RequestMapping(value="/pathVariableTest/{userId}")
     public void pathVariableTest(@PathVariable Integer userId)

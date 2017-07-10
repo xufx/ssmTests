@@ -12,7 +12,7 @@
 </head>
 <body>
 <h3>注册页面</h3>
-<form action="sessionLogin" method="post">
+<form action="session" method="post">
     <table>
         <tr>
             <td><label>登录名：</label></td>

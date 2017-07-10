@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.*;
 public class SessionAttributesController
 {
      private static final Log logger= LogFactory.getLog(SessionAttributesController.class);
-    @RequestMapping(value="/{forName}")
+   /* @RequestMapping(value="/{forName}")
     public String loginForm(@PathVariable String formName)
     {
         return formName;
-    }
+    }*/
 
     /*输入 http://localhost:8080/loginForm2.jsp进行测试*/
-    @RequestMapping(value="/sessionLogin",method=RequestMethod.POST)
+    @RequestMapping(value="/session",method=RequestMethod.POST)
     public String login(
             @RequestParam("loginname")String loginname,
             @RequestParam("password")String password,

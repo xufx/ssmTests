@@ -12,6 +12,12 @@ public class User implements Serializable
     {//公共构造器
         super();
     }
+    public User(String loginname, String password, String username)
+    {
+        this.loginname = loginname;
+        this.password = password;
+        this.username = username;
+    }
     public String getLoginname()
     {
         return loginname;
