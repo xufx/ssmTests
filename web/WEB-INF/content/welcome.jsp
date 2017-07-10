@@ -12,5 +12,13 @@
 </head>
 <body>
 <h3>欢迎[${requestScope.user.username}]登录</h3>
+
+    <!--测试SessionAttributesController时使用-->
+    requestScope:${requestScope.user.username}<br>
+    sessionScope:${sessionScope.user.username}<br>
+    requestScope:${requestScope.user.loginname}<br>
+    sessionScope:${sessionScope.user.loginname}<br>
+    requestScope:${requestScope.user.password}<br>
+    sessionScope:${sessionScope.user.password}<br>
 </body>
 </html>

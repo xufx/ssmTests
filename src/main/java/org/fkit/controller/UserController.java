@@ -65,6 +65,7 @@ public class UserController
         }
         return "loginForm";//登录失败返回loginForm.jsp
     }
+
 }
 /*请求:http://localhost:8080/context/login?loginname=jack&password=123456
 * 将j请求中的jack赋给变量loginname,将123456赋给变量password*/
