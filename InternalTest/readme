@@ -1,0 +1,12 @@
+访问时页面出现乱码的解决办法：
+message_zh_CN.properties中的内容：
+    loginname=登录名;
+    password=密码;
+    submit=提交
+    welcome=欢迎 {0}访问 疯狂软件
+    title=登录页面
+    username=管理员
+
+cmd |  cd D:\jdk1.8\bin | native2ascii message_zh_CN.properties message_zh_CN2.properties
+
+再放到resource中

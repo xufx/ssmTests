@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--使用ResourceBundleMessageSource类作为messageSource bean的实现
+    basenames：用来指定国际化的属性文件名称-->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames" value="message"/><!--国际化资源文件名-->
+    </bean>
+
+    <mvc:interceptors>
+        <!--国际化操作拦截器，如果采用（Session/Cookie）必须设置-->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>
+    </mvc:interceptors>
+
+    <!--默认语言区域解析器，可以不用显式配置-->
+    <bean class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"></bean>
+
+</beans>
