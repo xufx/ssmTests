@@ -15,7 +15,7 @@ public class I18NController
 {
     @RequestMapping(value="/{formName}")
     public String loginForm(
-            @PathVariable String formName,
+            @PathVariable String formName,//获得模板变量，forName=loginForm
             Model model
     )
     {
@@ -30,7 +30,10 @@ public class I18NController
             Model model,
             HttpServletRequest request
     )
-    {//如果登录名是fkit，密码是123456，则验证通过
+    {
+        System.out.println("model:"+model);
+        System.out.println("user:"+user.toString());
+        //如果登录名是fkit，密码是123456，则验证通过
        if (user.getLoginname()!=null&&user.getLoginname().equals("fkit")
                &&user.getPassword()!=null&&user.getPassword().equals("123456"))
        {//从后台代码获取国际化信息username

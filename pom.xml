@@ -12,6 +12,7 @@
         <module>JsonRequestTest</module>
         <module>JsonRequestTest2</module>
         <module>FormTest</module>
+        <module>InternalTest</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

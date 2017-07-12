@@ -7,6 +7,5 @@ message_zh_CN.properties中的内容：
     title=登录页面
     username=管理员
 
-cmd |  cd D:\jdk1.8\bin | native2ascii message_zh_CN.properties message_zh_CN2.properties
-
+cmd |  cd D:\jdk1.8\bin | 转化为unicode字符（未解决）
 再放到resource中

@@ -1,10 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/7/12
-  Time: 16:50
-  To change this template use File | Settings | File Templates.
+code：对应welcome = \u6B22\u8FCE {0} \u8BBF\u95EE\u75AF\u72C2\u8F6F\u4EF6
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -15,3 +11,4 @@
 <spring:message code="welcome" arguments="${requestScope.user.username}"></spring:message>
 </body>
 </html>
+<%--结果：欢迎 管理员 访问疯狂软件--%>

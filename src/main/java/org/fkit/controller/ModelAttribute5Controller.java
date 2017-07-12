@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class ModelAttribute5Controller
 {
     @ModelAttribute(value="user")//model(key=user,value=User)
-    public User userModel5(
+    public User userModel5(  //此方法在logins5（）方法之前被调用
             @RequestParam("loginname")String loginname,
             @RequestParam("password")String password
     )
