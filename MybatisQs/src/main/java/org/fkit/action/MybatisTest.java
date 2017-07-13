@@ -1,4 +1,4 @@
-package org.fkit.tst;
+package org.fkit.action;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 import org.fkit.domain.User;

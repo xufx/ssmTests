@@ -11,7 +11,7 @@
    </settings>
     <environments default="mysql"><!--环境配置：即连接的数据库-->
         <environment id="mysql">
-            <transactionManager type="JDBC"></transactionManager><!--事务管理类型：JDBC-->
+            <transactionManager type="JDBC"></transactionManager><!--事务管理器类型：JDBC-->
             <!--dataSource指数据源配置，POOLED是JDBC连接对象的数据源连接池的实现-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
@@ -24,5 +24,6 @@
     <mappers>
         <mapper resource="org/fkit/mapper/UserMapper.xml"></mapper>
     </mappers>
+
 </configuration>
 <!--配置了数据库连接信息、操纵SQL语句的文件-->
