@@ -1,0 +1,6 @@
+运行MybatisTest.java时，文件的运行顺序为：
+1.mybatis-config.xml
+2.log4j.properties
+3.User
+4.UserMapper.xml
+
