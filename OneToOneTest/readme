@@ -1,0 +1,5 @@
+访问mybatis有两种方法：
+1.SqlSession
+2.通过mapper接口的代理对象访问：
+    接口的类名必须和.xml的名称一致
+    方法名和参数和.xml中的id和parameterType一致

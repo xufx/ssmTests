@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fkit.mapper.ClazzMapper">
+    <select id="selectClazzById" parameterType="int" resultMap="clazzResultMap">
+        SELECT * FROM tb_clazz WHERE id=#{id}
+    </select>
+    <resultMap id="clazzResultMap" type="org.fkit.domain.Clazz" >
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <!--一对多关联映射,根据id查询对应的学生表中的信息 懒加载-->
+        <collection property="students" javaType="ArrayList" column="id" ofType="org.fkit.domain.Student" select="org.fkit.mapper.StudentMapper.selectStudentByClazzId" fetchType="lazy">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="sex" column="age"/>
+            <result property="age" column="age"/>
+        </collection>
+    </resultMap>
+</mapper>
