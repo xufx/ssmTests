@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fkit.mapper.UserMapper">
+    <select id="selectUser" resultType="map">
+        SELECT * FROM tb_user;
+    </select>
+    <resultMap id="userResultMap" type="org.fkit.domain.User">
+        <id property="id" column="user_ID"/>
+        <result property="name" column="user_NAME"/>
+        <result property="sex" column="user_SEX"/>
+        <result property="age" column="user_AGE"/>
+    </resultMap>
+    <select id="selectUser2" resultMap="userResultMap">
+        SELECT * FROM TB_USER2
+    </select>
+
+
+    <!--映射学生对象的resultMap-->
+    <resultMap id="studentResultMap" type="org.fkit.domain.Student">
+        <id property="id" column="id"></id>
+        <result property="name" column="NAME"/>
+        <result property="sex" column="SEX"/>
+        <result property="age" column="AGE"/>
+        <association select="selectClazzWithId" property="clazz" column="CLAZZ_id" javaType="org.fkit.domain.Clazz" />
+    </resultMap>
+
+    <!--根据班级id查询班级-->
+    <select id="selectClazzWithId"  resultType="org.fkit.domain.Clazz">
+        SELECT * from tb_clazz WHERE id=#{id}
+    </select>
+
+    <!--查询所有学生信息-->
+    <select id="selectStudent" resultMap="studentResultMap">
+        SELECT * FROM TB_STUDENT
+    </select>
+
+
+    <!--映射班级的resultMap-->
+    <resultMap id="clazzResultMap" type="org.fkit.domain.Clazz">
+        <id property="id" column="id"/>
+        <result property="code" column="CODE"/>
+        <collection property="students" javaType="ArrayList" column="id" ofType="org.fkit.domain.Student" select="selectStudentWithId"/>
+    </resultMap>
+    <select id="selectStudentWithId" resultType="org.fkit.domain.Student">
+        SELECT  * FROM TB_STUDENT WHERE CLAZZ_id=#{id}
+    </select>
+    <select id="selectClazz" resultMap="clazzResultMap">
+        SELECT * from tb_clazz
+    </select>
+</mapper>
+
+        <!--
+        当数据库的列名和返回类型对象的属性不一样，需要用resultMap元素进行处理,各个元素之间运行相互独立
+        每个元素的运行对应一个session
+        1.resultMap元素的属性（id、type）：
+        id：唯一标示符
+        type:resultMap实际返回的类型
+        2.resultMap元素的子元素（<id>、<result>）:
+        <id>：数据库表的主键，{property：列映射到返回类型的属性}，{column：列名}
+        <result>：表示数据库表的普通列，{property：列映射到返回类型的属性}，{column：列名}
+        查询tb_user2表的数据封装成User对象
+        -->

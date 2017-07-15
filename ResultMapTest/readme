@@ -1,0 +1,2 @@
+测试当Dao的属性和数据库表的属性不一致时使用resultMap元素进行映射
+resultMapTest未调通
