@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fkit.mapper.EmployeeMapper">
+    <!--选择性地通过state和id两个条件进行搜索-->
+    <select id="selectEmployeeByIdLike" resultType="org.fkit.domain.Employee">
+            SELECT * FROM tb_employee WHERE state="ACTIVE"
+        /*如果传进来的参数有id属性，则加上id查询条件*/
+            <if test="id!=null">
+                and id=#{id}
+            </if>
+    </select>
+    <!--通过多个条件进行搜索-->
+    <select id="selectEmployeeByLoginLike" resultType="org.fkit.domain.Employee">
+        select * from tb_employee WHERE state="ACTIVE"
+        <if test="loginname!=null and password!=null">
+            AND loginname=#{loginname}and password=#{password}
+        </if>
+    </select>
+
+    <!--类似switch语句，根据state与id或state与loginname与password查询或state与sex进行查询-->
+    <select id="selectEmployeeChoose" parameterType="hashmap" resultType="org.fkit.domain.Employee">
+        SELECT * FROM tb_employee WHERE state="ACTIVE"
+        <choose>
+            <when test="id!=null">
+                AND id=#{id}
+            </when>
+            <when test="loginname!=null and password!=null">
+                AND loginname=#{loginname} and password=#{password}
+            </when>
+            <otherwise>
+                AND  sex="男"
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--必须至少传入state参数，否则会出错-->
+    <select id="selectEmployeeByIdLike2" resultType="org.fkit.domain.Employee">
+        SELECT * FROM tb_employee WHERE
+        <if test="state != null ">
+            state=#{state}
+        </if>
+        <if test="id !=null ">
+            and id=#{id}
+        </if>
+    </select>
+    <select id="employeeLike" resultType="org.fkit.domain.Employee">
+        select * from tb_employee
+        <where>
+            <if test="state!=null">
+                state=#{state}
+            </if>
+            <if test="id !=null ">
+                and id=#{id}
+            </if>
+            <if test="loginname!=null and password!=null">
+                and loginname=#{loginname} AND password=#{password}
+            </if>
+        </where>
+    </select>
+
+    <!--使用set元素-->
+    <select id="selectEmployeeWithId" parameterType="int" resultType="org.fkit.domain.Employee">
+          select * from tb_employee WHERE id=#{id}
+    </select>
+    <update id="updateEmployeeIfNecessary" parameterType="org.fkit.domain.Employee">
+        UPDATE tb_employee
+        <set>
+            <if test="loginname !=null">loginname=#{loginname},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="sex!=null">sex=#{sex},</if>
+            <if test="age!=null">age=#{age},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="sal!=null">sal=#{sal},</if>
+            <if test="state!=null">state=#{state}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <select id="selectEmployeeIn" resultType="org.fkit.domain.Employee">
+        select * from tb_employee WHERE id in 
+        <foreach collection="list" item="intem" index="index" open="(" separator="," close=")">
+            OPEN="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
+<!--selectEmployeeByIdLike2和employeeLike功能相同，但后者更好
+where元素：知道只有在一个以上的if条件有值的情况下才去插入WHERE子句
+set元素：动态前置SET关键字，同时会消除无关的逗号-->

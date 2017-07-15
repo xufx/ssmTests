@@ -17,6 +17,7 @@
         <module>ResultMapTest</module>
         <module>OneToOneTest</module>
         <module>ManyToManyTest</module>
+        <module>DynamicSQLTest</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

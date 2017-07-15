@@ -8,3 +8,79 @@ spring+springMVC+mybatis+maven+intelliJ的整合练习
 --ManyToManyTest、MybatisTest、OneToOneTest、ResultMapTest：mybatis连接数据库的测试
 各个模块依赖于ssmTests模块
 out、src、target、web、.gitignore、pom.xml、READE.md、ssmTests、.iml属于同一个ssmTests模块
+
+MybatisTest、OneToOneTest、ResultMapTest涉及数据库及其脚本：
+
+use mybatis;
+CREATE TABLE tb_card
+(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	CODE VARCHAR(18)
+);
+INSERT INTO tb_card(CODE) VALUES("432801198009191038");
+
+CREATE TABLE tb_person
+(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(18) ,
+	sex VARchar(18) ,
+	age INT,
+	card_id INT UNIQUE, -- 一个person使用了card_id之后，其他person就不能再使用此card_id了
+	FOREIGN KEY (card_id) REFERENCES tb_card(id)
+);
+
+CREATE TABLE tb_user
+(
+	ID INT(11) PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(18) DEFAULT NULL,
+	SEX CHAR(2) DEFAULT NULL,
+	AGE INT(11) DEFAULT NULL
+)
+
+CREATE TABLE tb_user2
+(
+	user_ID INT PRIMARY KEY AUTO_INCREMENT,
+	user_NAME VARCHAR(18),
+	user_SEX VARCHAR(18),
+	user_AGE INT
+)
+
+CREATE TABLE tb_clazz
+(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	CODE VARCHAR(18),
+	NAME VARCHAR(18)
+);
+
+
+CREATE TABLE tb_student
+(
+	id INT PRIMARY key auto_increment,
+	NAME VARCHAR(18),
+	SEX CHAR(3),
+	AGE INT,
+	CLAZZ_id INT,
+	FOREIGN KEY(CLAZZ_id)REFERENCES tb_clazz(id)
+);
+
+INSERT INTO tb_person(NAME,sex,age,card_id)VALUES("JACK","男",23,1);
+
+INSERT INTO tb_clazz(CODE) VALUES('J1601');
+INSERT INTO tb_clazz(CODE) VALUES('J1602');
+INSERT INTO tb_clazz(CODE,NAME) VALUES('J1601',"JAVA就业班");
+
+INSERT INTO TB_STUDENT(NAME,SEX,AGE,CLAZZ_id)VALUES("jack",'男',22,1);
+INSERT INTO TB_STUDENT(NAME,SEX,AGE,CLAZZ_id)VALUES("rose",'女',18,1);
+INSERT INTO TB_STUDENT(NAME,SEX,AGE,CLAZZ_id)VALUES("tom",'男',25,1);
+INSERT INTO TB_STUDENT(NAME,SEX,AGE,CLAZZ_id)VALUES("mary",'女',20,2);
+INSERT INTO TB_STUDENT(NAME,SEX,AGE,CLAZZ_id)VALUES("alice",'女',20,2);
+
+INSERT INTO tb_user(NAME,sex,age)VALUES("jack",'男',22);
+INSERT INTO tb_user(NAME,sex,age)VALUES("rose",'女',18);
+INSERT INTO tb_user(NAME,sex,age)VALUES("tom",'男',25);
+INSERT INTO tb_user(NAME,sex,age)VALUES("mary",'女',20);
+
+INSERT INTO tb_user2(user_NAME,user_SEX,user_AGE)VALUES("jack",'男',22);
+INSERT INTO tb_user2(user_NAME,user_SEX,user_AGE)VALUES("rose",'女',18);
+INSERT INTO tb_user2(user_NAME,user_SEX,user_AGE)VALUES("tom",'男',25);
+INSERT INTO tb_user2(user_NAME,user_SEX,user_AGE)VALUES("mary",'女',20);
