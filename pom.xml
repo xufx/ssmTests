@@ -14,6 +14,9 @@
         <module>FormTest</module>
         <module>InternalTest</module>
         <module>MybatisQs</module>
+        <module>ResultMapTest</module>
+        <module>OneToOneTest</module>
+        <module>ManyToManyTest</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

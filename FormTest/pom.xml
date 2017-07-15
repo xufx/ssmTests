@@ -12,9 +12,7 @@
 
     <artifactId>FormTest</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>../ResultMapTest</module>
-    </modules>
+
 
 
 </project>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fkit.mapper.ArticleMapper">
+   <!-- <resultMap id="articleMapperResult" type="org.fkit.domain.Article">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="remark" column="remark"/>
+        <collection property="orders" javaType="ArrayList" column="id" ofType="org.fkit.domain.Order" select="org.fkit.mapper.OrderMapper.selectOrderById">
+            <id property="id" column="id"/>
+            <result property="code" column="code"/>
+            <result property="total" column="total"/>
+        </collection>
+    </resultMap>
+    <select id="selectArticleById" resultMap="articleMapperResult">
+        SELECT * FROM tb_article WHERE id=#{id}
+    </select>-->
+    <select id="selectArticleByOrderId" parameterType="int" resultType="org.fkit.domain.Article">
+        SELECT * FROM tb_article WHERE id in
+        (SELECT article_id FROM tb_item WHERE order_id=#{id})
+    </select>
+    <!--<select id="selectArticleById" resultType="org.fkit.domain.Article">
+        SELECT * FROM tb_article WHERE id=#{id}
+    </select>-->
+</mapper>
