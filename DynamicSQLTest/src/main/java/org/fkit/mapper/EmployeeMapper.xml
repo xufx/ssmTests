@@ -80,12 +80,21 @@
 
     <select id="selectEmployeeIn" resultType="org.fkit.domain.Employee">
         select * from tb_employee WHERE id in 
-        <foreach collection="list" item="intem" index="index" open="(" separator="," close=")">
-            OPEN="(" separator="," close=")">
+        <foreach  item="item" index="index" collection="list" open="(" separator="," close=")">
             #{item}
         </foreach>
     </select>
+
+    <select id="selectEmployeeLikeName" resultType="org.fkit.domain.Employee">
+        <bind name="pattern" value="'%'+_parameter.getName()+'%'"/>
+        SELECT * FROM tb_employee
+        WHERE loginname LIKE #{pattern}
+    </select>
 </mapper>
 <!--selectEmployeeByIdLike2和employeeLike功能相同，但后者更好
+if元素：选择性的查询
+choose when otherwise元素：类似switch语句，选择其中一个执行
 where元素：知道只有在一个以上的if条件有值的情况下才去插入WHERE子句
-set元素：动态前置SET关键字，同时会消除无关的逗号-->
+set元素：动态前置SET关键字，同时会消除无关的逗号
+foreach元素：对一个集合进行遍历
+bind元素：模糊查询-->

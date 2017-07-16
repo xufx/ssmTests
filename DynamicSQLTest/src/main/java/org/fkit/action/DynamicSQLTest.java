@@ -5,8 +5,7 @@ import org.fkit.domain.Employee;
 import org.fkit.mapper.EmployeeMapper;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 /**
  * Created by xufuxiu on 2017/7/15.
  */
@@ -23,7 +22,9 @@ public class DynamicSQLTest
           //dt.select3(session);
           //dt.select4(session);
           //dt.select5(session);
-          dt.select6(session);
+          //dt.select6(session);
+          //dt.select7(session);
+          dt.select8(session);
           session.commit();
           session.close();
       }
@@ -89,5 +90,23 @@ public class DynamicSQLTest
         employee.setPassword("6666666");
         em.updateEmployeeIfNecessary(employee);
         System.out.println("after update "+employee);
+    }
+    public void select7(SqlSession session)
+    {
+        EmployeeMapper em=session.getMapper(EmployeeMapper.class);
+       List<Integer> ids=new ArrayList<Integer>();
+        ids.add(1);
+        ids.add(2);
+        List<Employee> list=em.selectEmployeeIn(ids);
+        list.forEach(employee -> System.out.println(employee));
+    }
+    public void select8(SqlSession session)
+    {//未调通
+        EmployeeMapper em=session.getMapper(EmployeeMapper.class);
+       Employee employee=new Employee();
+        employee.setName("o");//返回loginname包含字母“o”的Employee对象
+        List<Employee>list=em.selectEmployeeLikeName(employee);
+        //System.out.println(list);
+        list.forEach(employee1 -> System.out.println(employee));
     }
 }

@@ -17,4 +17,9 @@ public interface EmployeeMapper
 
     Employee selectEmployeeWithId(Integer id);
     void updateEmployeeIfNecessary(Employee employee);
+
+    /*根据传入的id集合查询员工*/
+    List<Employee> selectEmployeeIn(List<Integer> ids);
+    /*根据传入的参数进行模糊查询*/
+    List<Employee> selectEmployeeLikeName(Employee employee);
 }
