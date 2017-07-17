@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!--版本、存储文件所用的字符集-->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+   <settings>
+       <!--指定mybatis所用日志的具体实现-->
+       <setting name="logImpl" value="LOG4J"/>
+       <!--开启懒加载-->
+       <setting name="lazyLoadingEnabled" value="true"/><!--全局开关-->
+       <setting name="aggressiveLazyLoading" value="false"/>
+   </settings>
+    <environments default="mysql"><!--环境配置：即连接的数据库-->
+        <environment id="mysql">
+            <transactionManager type="JDBC"></transactionManager><!--事务管理器类型：JDBC-->
+            <!--dataSource指数据源配置，POOLED是JDBC连接对象的数据源连接池的实现-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8"/><!--数据库名称-->
+                <property name="username" value="root"></property>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper class="org.fkit.mapper.UserMapper"/>
+        <mapper class="org.fkit.mapper.CardMapper"/>
+        <mapper class="org.fkit.mapper.PersonMapper"/>
+        <mapper class="org.fkit.mapper.StudentMapper"/>
+        <mapper class="org.fkit.mapper.ClazzMapper"/>
+    </mappers>
+
+</configuration>
+<!--配置了数据库连接信息、操纵SQL语句的文件-->
