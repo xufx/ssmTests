@@ -1,0 +1,54 @@
+org.fkit.domain包：持久层
+org.fkit.service包：服务层，定义了接口
+org.fkit.service.impl:service接口方法的实现，通过@AutoWired建立了mapper对象，通过mapper对象访问mapper中的方法
+org.fkit.mapper包：mybatis注解的mapper接口，包含sql语句，直接与数据库通信
+org.fkit.controller：控制层，处理请求
+
+请求处理流程：
+1.输入http：//localhost:8080/loginform
+2.进入FormController
+3.进入loginForm.jsp
+4.submit之后请求变为http://localhost:8080/login
+4.进入UserController
+5.UserService=》UserServiceImpl=>UserMapper,调用findWithLoginnameAndPassword方法，@Param获得loginForm.jsp传过来的参数，@Select查询数据库对象的信息，返回User对象
+6.user！=null，请求变为http://localhost:8080/main，进入BookController
+7.BookService=》BookServiceImpl=>BookMapper调用getBookAll方法，查询数据库，返回List<Book>，赋给book_list，添加到model
+8.进入main.jsp
+9.requestScope获得book_list
+
+配置文件：
+applicationContext
+springmvc-config.xml:配置视图解析器、扫描controller
+web.xml：配置DispatcherServlet前端请求拦截器、springmvc、过滤器
+
+数据库fkbookapp:
+CREATE TABLE tb_book (
+	id INT (11) PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR (54),
+	author VARCHAR (54),
+	publicationdate DATE ,#出版日期
+	publication VARCHAR (150),#出版社
+	price DOUBLE ,
+	image VARCHAR (54),
+	remark VARCHAR (600)
+);
+CREATE TABLE tb_user(
+id INT PRIMARY KEY AUTO_INCREMENT,      #id
+loginname VARCHAR(50) UNIQUE,		#登录名 邮箱
+PASSWORD VARCHAR(18),			#密码
+username VARCHAR(18),			#用户名
+phone VARCHAR(18),			#电话
+address VARCHAR(255)			#地址
+);
+INSERT INTO TB_BOOK(id,name,author,publicationdate,publication,price,image,remark)
+values('1','疯狂java讲义','李刚','2008-10-1','电子工业出版社','74.2','java.jpg','疯狂源自梦想，技术成就辉煌');
+INSERT INTO TB_BOOK(id,name,author,publicationdate,publication,price,image,remark)
+values('2','轻量级javaEE企业应用实战','李刚','2008-11-1','电子工业出版社','59.2','ee.jpg','本书主要介绍以spring-hibernate为基础的JAVAEE应用。');
+INSERT INTO TB_BOOK(id,name,author,publicationdate,publication,price,image,remark)
+values('3','疯狂Android讲义','李刚','2011-10-1','电子工业出版社','60.6','android.jpg','android作为最受欢迎的操作系统');
+INSERT INTO TB_BOOK(id,name,author,publicationdate,publication,price,image,remark)
+values('4','疯狂ajax讲义','李刚','2011-7-1','电子工业出版社','66','ajax.jpg','异步访问技术，现在所有网站都在用。');
+
+INSERT INTO tb_user(loginname,password,username,phone,address)
+values('jack','123456','杰克','13920001234','广州省天河区');
+
