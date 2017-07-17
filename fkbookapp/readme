@@ -3,6 +3,7 @@ org.fkit.service包：服务层，定义了接口
 org.fkit.service.impl:service接口方法的实现，通过@AutoWired建立了mapper对象，通过mapper对象访问mapper中的方法
 org.fkit.mapper包：mybatis注解的mapper接口，包含sql语句，直接与数据库通信
 org.fkit.controller：控制层，处理请求
+问题：不能获取图片显示出来
 
 请求处理流程：
 1.输入http：//localhost:8080/loginform

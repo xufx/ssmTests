@@ -1,11 +1,14 @@
 # ssmTests
 spring+springMVC+mybatis+maven+intelliJ的整合练习
+
 包含的子模块：FormTest、InternalTest、JsonRequestTest、JsonRequestTest2、ManyToManyTest、MybatisTest、OneToOneTest、ResultMapTest
 --ssmTests:工程名和模块名
 --FormTest：springMVC表单测试
 --InternalTest：springmvc国际化
 --JsonRequestTest、JsonRequestTest2：json数据格式转换
---ManyToManyTest、MybatisTest、OneToOneTest、ResultMapTest：mybatis连接数据库的测试
+--DynamicSQLTest、ManyToManyTest、MybatisTest、OneToOneTest、ResultMapTest：mybatis连接数据库的测试。都是使用xml的方式
+各个模块的dependency=本模块的pom+ssmTests下的pom
+
 各个模块依赖于ssmTests模块
 out、src、target、web、.gitignore、pom.xml、READE.md、ssmTests、.iml属于同一个ssmTests模块
 
